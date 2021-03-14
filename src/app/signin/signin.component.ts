@@ -26,9 +26,10 @@ export class SigninComponent implements OnInit {
     };
 
     this.genericService.signIn(data).subscribe(
-      (res) => {
-        localStorage.setItem('token', res.auth_token)
+      async (res) => {
         this.router.navigateByUrl("/")
+        await this.genericService.setToken(res.auth_token)
+        location.reload()
       },
       (e) => {
           this.errors.push(e.error.erros)

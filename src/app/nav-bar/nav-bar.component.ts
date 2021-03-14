@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GenericService } from '../services/generic-service.service';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
+  constructor(private genericService: GenericService, private router: Router) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  signOut() {
+    this.genericService.signOut().subscribe(
+      (res) => {
+        this.genericService.clearToken();
+        this.router.navigateByUrl('login')
+      },
+      (e) => {}
+    );
   }
 
+  ngOnInit(): void {}
 }

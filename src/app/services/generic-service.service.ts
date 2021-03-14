@@ -21,7 +21,15 @@ export class GenericService {
   }
 
   getToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
+  }
+
+  setToken(token) {
+    localStorage.setItem('token', token);
+  }
+
+  clearToken() {
+    return localStorage.clear();
   }
 
   getAll(res): Observable<any> {
@@ -59,6 +67,16 @@ export class GenericService {
   }
 
   signIn(user): Observable<any> {
-    return this.http.post<any>(this.baseUrlApi + 'sessions/', user, this.httpOptions);
+    return this.http.post<any>(
+      this.baseUrlApi + 'sessions/',
+      user,
+      this.httpOptions
+    );
+  }
+  signOut(): Observable<any> {
+    return this.http.delete<any>(
+      this.baseUrlApi + 'sessions/' + this.getToken(),
+      this.httpOptions
+    );
   }
 }
