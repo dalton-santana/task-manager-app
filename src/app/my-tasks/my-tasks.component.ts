@@ -40,14 +40,13 @@ export class MyTasksComponent implements OnInit {
         this.cancelEdit()
         this.getAllTasks()
       })
-    } else [
+    } else {
       this.genericService.updateItem("tasks", this.currentTask.id, data)
       .subscribe(res => {
         this.cancelEdit()
         this.getAllTasks()
       })
-
-    ]
+    }
   }
 
 
@@ -71,6 +70,22 @@ export class MyTasksComponent implements OnInit {
       is_visible: null,
     };
     this.getAllTasks()
+  }
+
+  setTrueTask(task) {
+    let data = {
+      task: {
+        ...task,
+        status: true
+      }
+    }
+
+    this.genericService.updateItem("tasks", task.id, data)
+    .subscribe(res => {
+      this.cancelEdit()
+      this.getAllTasks()
+    })
+
   }
 
   ngOnInit(): void {

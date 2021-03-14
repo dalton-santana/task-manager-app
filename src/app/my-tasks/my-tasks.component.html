@@ -39,22 +39,30 @@
         <th>ID</th>
         <th>Título</th>
         <th>Descrição</th>
+        <th>Status</th>
         <th>Ações</th>
       </tr>
-    </thead>
     <tbody>
       <tr *ngFor="let task of tasks">
         <td>{{ task.id }}</td>
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>
         <td>
-          <button class="btn btn-info" (click)="showTask(task)">
-            <span class="glyphicon glyphicon-trash"></span>
-            Editar
-          </button>
+          <span *ngIf="task.status" class="badge badge-success">Concluída</span>
+          <span *ngIf="task.is_visible" class="badge badge-warning">Pública</span>
+        </td>
+        <td> 
           <button class="btn btn-danger" (click)="deleteTask(task)">
             <span class="glyphicon glyphicon-trash"></span>
             Excluir
+          </button>
+          <button *ngIf="!task.status" class="btn btn-info px-2" (click)="showTask(task)">
+            <span class="glyphicon glyphicon-trash"></span>
+            Editar
+          </button>
+          <button *ngIf="!task.status" class="btn btn-success px-2" (click)="setTrueTask(task)">
+            <span class="glyphicon glyphicon-trash"></span>
+            Concluída
           </button>
         </td>
       </tr>
