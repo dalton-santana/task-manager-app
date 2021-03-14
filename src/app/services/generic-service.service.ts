@@ -8,16 +8,21 @@ import { environment } from 'src/environments/environment';
 })
 export class GenericService {
   private baseUrlApi; // URL to web api
+  private token
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `sLHBz9Zc8oMUiBtEhWpE`,
+      Authorization: this.getToken(),
     }),
   };
 
   constructor(private http: HttpClient) {
     this.baseUrlApi = environment.baseUrlApi;
+  }
+
+  getToken() {
+    return localStorage.getItem('token')
   }
 
   getAll(res): Observable<any> {
