@@ -1,5 +1,5 @@
 <app-nav-bar></app-nav-bar>
-<h1 class="page-header">Todas as Tarefas</h1>
+<h3 class="page-header">Tarefas Públicas</h3>
 
 <table class="table">
   <thead>
@@ -7,7 +7,7 @@
       <th>ID</th>
       <th>Título</th>
       <th>Descrição</th>
-      <th>Ações</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
@@ -16,14 +16,7 @@
       <td>{{ task.title }}</td>
       <td>{{ task.description }}</td>
       <td>
-        <a [routerLink]="['/tasks', task.id]" class="btn btn-info" style="margin-right: 7px">
-          <span class="glyphicon glyphicon-info-sign"></span>
-          Detalhes
-        </a>
-        <button class="btn btn-danger" (click)="deleteTask(task)">
-          <span class="glyphicon glyphicon-trash"></span>
-          Excluir
-        </button>
+        <span *ngIf="task.status" class="badge badge-success">Concluída</span>
       </td>
     </tr>
   </tbody>
