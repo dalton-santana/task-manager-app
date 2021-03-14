@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class GenericService {
   private baseUrlApi; // URL to web api
-  private token
 
   httpOptions = {
     headers: new HttpHeaders({

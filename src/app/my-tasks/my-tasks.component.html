@@ -1,35 +1,63 @@
-
-
-
 <app-nav-bar></app-nav-bar>
-<h1 class="page-header">Minhas Tarefas</h1>
-<button type="button" class="btn btn-success">Nova Tarefa</button>
-<table class="table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Título</th>
-      <th>Descrição</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let task of tasks">
-      <td>{{ task.id }}</td>
-      <td>{{ task.title }}</td>
-      <td>{{ task.description }}</td>
-      <td>
-        <a [routerLink]="['/tasks', task.id]" class="btn btn-info" style="margin-right: 7px">
-          <span class="glyphicon glyphicon-info-sign"></span>
-          Edditar
-        </a>
-        <button class="btn btn-danger" (click)="deleteTask(task)">
-          <span class="glyphicon glyphicon-trash"></span>
-          Excluir
+<h3 class="page-header">Minhas Tarefas</h3>
+<div class="card login-form">
+  <div class="card-body">
+    <div class="card-text">
+      <div>
+        <div class="form-group">
+          <label>Título</label>
+          <input
+            type="email"
+            class="form-control form-control-sm"
+            [(ngModel)]="currentTask.title"
+          />
+          <label>Descrição</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            [(ngModel)]="currentTask.description"
+          />
+          <input type="checkbox" [(ngModel)]="currentTask.is_visible" />
+          <label class="form-check-label" for="exampleCheck1"
+            >Tarefa pública</label
+          >
+        </div>
+
+        <button type="submit" class="btn btn-success" (click)="addTask()">
+          Adicionar Tarefa
         </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
+      </div>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>
+          <a
+            [routerLink]="['/tasks', task.id]"
+            class="btn btn-info"
+            style="margin-right: 7px"
+          >
+            <span class="glyphicon glyphicon-info-sign"></span>
+            Edditar
+          </a>
+          <button class="btn btn-danger" (click)="deleteTask(task)">
+            <span class="glyphicon glyphicon-trash"></span>
+            Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
