@@ -4,47 +4,57 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GenericService {
-
-  private baseUrlApi;  // URL to web api
+  private baseUrlApi; // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type':'application/json', 'Authorization': `sLHBz9Zc8oMUiBtEhWpE` })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `sLHBz9Zc8oMUiBtEhWpE`,
+    }),
   };
 
-  constructor(private http: HttpClient) { 
-    this.baseUrlApi = environment.baseUrlApi
-  }
-  
-  getAll(res): Observable<any>{
-      return this.http.get<any>(this.baseUrlApi + res + "/", this.httpOptions);
+  constructor(private http: HttpClient) {
+    this.baseUrlApi = environment.baseUrlApi;
   }
 
-
-  getItem(res, pk: number,): Observable<any>{
-
-      return this.http.get<any>(this.baseUrlApi + res + "/" + pk + "/", this.httpOptions);
-  
+  getAll(res): Observable<any> {
+    return this.http.get<any>(this.baseUrlApi + res + '/', this.httpOptions);
   }
 
-
-  updateItem (res, pk: any, item): Observable<any> {
-      return this.http.patch(this.baseUrlApi + res + "/" + pk + "/", item, this.httpOptions);
+  getItem(res, pk: number): Observable<any> {
+    return this.http.get<any>(
+      this.baseUrlApi + res + '/' + pk + '/',
+      this.httpOptions
+    );
   }
 
-
-  additem (res, item: any): Observable<any> {
-      return this.http.post<any>(this.baseUrlApi + res + "/", item, this.httpOptions);
+  updateItem(res, pk: any, item): Observable<any> {
+    return this.http.patch(
+      this.baseUrlApi + res + '/' + pk + '/',
+      item,
+      this.httpOptions
+    );
   }
-  
 
-  deleteitem ( res, item: any | number): Observable<any> {
+  additem(res, item: any): Observable<any> {
+    return this.http.post<any>(
+      this.baseUrlApi + res + '/',
+      item,
+      this.httpOptions
+    );
+  }
+
+  deleteitem(res, item: any | number): Observable<any> {
     const pk = typeof item === 'number' ? item : item.pk;
-    const url = this.baseUrlApi + res + "/" + pk + "/";
+    const url = this.baseUrlApi + res + '/' + pk + '/';
 
     return this.http.delete<any>(String(url), this.httpOptions);
   }
 
+  signIn(user): Observable<any> {
+    return this.http.post<any>(this.baseUrlApi + 'sessions/', user, this.httpOptions);
+  }
 }
