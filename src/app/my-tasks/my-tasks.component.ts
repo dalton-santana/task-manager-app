@@ -9,6 +9,7 @@ import { GenericService } from '../services/generic-service.service';
 export class MyTasksComponent implements OnInit {
   public tasks: Array<any> = []
   currentTask = {
+    id: null,
     title: null,
     description: null,
     status: false,
@@ -26,30 +27,49 @@ export class MyTasksComponent implements OnInit {
     })
   }
 
-  addTask() {
+  submitTask() {
     let data = {
       task: {
         ...this.currentTask
       }
     }
-    this.genericService.additem("tasks", data)
-    .subscribe(res => {
-      this.getAllTasks()
-    })
+
+    if(!this.currentTask.id) {
+      this.genericService.additem("tasks", data)
+      .subscribe(res => {
+        this.cancelEdit()
+        this.getAllTasks()
+      })
+    } else [
+      this.genericService.updateItem("tasks", this.currentTask.id, data)
+      .subscribe(res => {
+        this.cancelEdit()
+        this.getAllTasks()
+      })
+
+    ]
   }
 
-  updateTask(task) {
-    this.genericService.getAll("tasks")
-    .subscribe(res => {
-       this.getAllTasks()
-    })
-  }
 
   deleteTask(task) {
     this.genericService.deleteitem("tasks", task.id)
     .subscribe(res => {
       this.getAllTasks()
     })
+  }
+
+  showTask(task) {
+    this.currentTask = task
+  }
+
+  cancelEdit() {
+    this.currentTask = {
+      id: null,
+      title: null,
+      description: null,
+      status: false,
+      is_visible: null,
+    };
   }
 
   ngOnInit(): void {
