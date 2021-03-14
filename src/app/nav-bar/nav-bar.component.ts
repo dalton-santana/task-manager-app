@@ -16,7 +16,10 @@ export class NavBarComponent implements OnInit {
         this.router.navigateByUrl('login')
         this.genericService.clearToken();
       },
-      (e) => {}
+      (e) => {
+        this.router.navigateByUrl('login')
+        this.genericService.clearToken();
+      }
     );
   }
 
