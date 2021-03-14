@@ -10,6 +10,7 @@ import { MyTasksComponent } from './my-tasks/my-tasks.component';
 import { SigninComponent } from './signin/signin.component';
 import { FormsModule } from '@angular/forms';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
     NavBarComponent,
     MyTasksComponent,
     SigninComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

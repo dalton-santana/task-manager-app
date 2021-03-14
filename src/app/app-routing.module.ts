@@ -4,11 +4,13 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { MyTasksComponent } from './my-tasks/my-tasks.component';
 import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent,
   canActivate: [AuthGuardService] },
   { path: 'login', component: SigninComponent },
+  { path: 'cadastre-se', component: SignupComponent },
   {
     path: 'my-tasks',
     component: MyTasksComponent,
