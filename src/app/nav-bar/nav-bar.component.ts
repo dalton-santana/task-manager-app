@@ -13,8 +13,8 @@ export class NavBarComponent implements OnInit {
   signOut() {
     this.genericService.signOut().subscribe(
       (res) => {
-        this.genericService.clearToken();
         this.router.navigateByUrl('login')
+        this.genericService.clearToken();
       },
       (e) => {}
     );

@@ -21,7 +21,7 @@ export class GenericService {
   }
 
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('token') || ''
   }
 
   setToken(token) {
