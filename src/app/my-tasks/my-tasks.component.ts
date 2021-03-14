@@ -17,6 +17,4 @@ export class MyTasksComponent implements OnInit {
       this.tasks = res
     })
   }
-
-
 }

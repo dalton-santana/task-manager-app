@@ -1,5 +1,8 @@
-<h1 class="page-header">Minhas Tarefas</h1>
 
+
+
+<h1 class="page-header">Minhas Tarefas</h1>
+<button type="button" class="btn btn-success">Nova Tarefa</button>
 <table class="table">
   <thead>
     <tr>
@@ -17,7 +20,7 @@
       <td>
         <a [routerLink]="['/tasks', task.id]" class="btn btn-info" style="margin-right: 7px">
           <span class="glyphicon glyphicon-info-sign"></span>
-          Detalhes
+          Edditar
         </a>
         <button class="btn btn-danger" (click)="deleteTask(task)">
           <span class="glyphicon glyphicon-trash"></span>
@@ -27,3 +30,5 @@
     </tr>
   </tbody>
 </table>
+
+
