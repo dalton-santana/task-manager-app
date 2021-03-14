@@ -19,7 +19,7 @@ export class GenericService {
   constructor(private http: HttpClient) {
     this.baseUrlApi = environment.baseUrlApi;
   }
-
+  
   getToken() {
     return localStorage.getItem('token') || ''
   }

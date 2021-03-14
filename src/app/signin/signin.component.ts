@@ -29,7 +29,6 @@ export class SigninComponent implements OnInit {
       async (res) => {
         localStorage.setItem('token', res.auth_token)
         this.router.navigateByUrl("/")
-        //location.reload()
       },
       (e) => {
           this.errors.push(e.error.erros)

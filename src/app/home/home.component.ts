@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.genericService.getAll("all_public_tasks")
     .subscribe(res => {
       this.tasks = res
