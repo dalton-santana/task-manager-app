@@ -23,16 +23,109 @@
           >
         </div>
 
-        <button type="submit" class="btn btn-success float-right" (click)="submitTask()">
-        {{ currentTask.id ? 'Salvar': 'Adicionar' }} 
+        <button
+          type="submit"
+          class="btn btn-success float-right"
+          (click)="submitTask()"
+        >
+          {{ currentTask.id ? "Salvar" : "Adicionar" }}
         </button>
-        <button *ngIf="currentTask.id" class="btn btn-danger" (click)="cancelEdit()">
+        <button
+          *ngIf="currentTask.id"
+          class="btn btn-danger"
+          (click)="cancelEdit()"
+        >
           <span class="glyphicon glyphicon-trash"></span>
           cancelar
         </button>
       </div>
     </div>
   </div>
+
+  <h4 class="">Filtros</h4>
+  <div class="d-flex flex-row">
+    <div class="p-3">
+      <p>Visibilidade:</p>
+      <div class="form-check1">
+        <input
+          class="form-check1-input"
+          type="radio"
+          name="exampleRadios"
+          id="exampleRadios1"
+          value="null"
+          checked
+          [(ngModel)]="filterList.is_visible"
+          (change)="filter()"
+        />
+        <label class="form-check-label px-2" for="exampleRadios1"> Todos </label>
+      </div>
+      <div class="form-check1">
+        <input
+          class="form-check1-input"
+          type="radio"
+          name="exampleRadios"
+          id="exampleRadios2"
+          value="true"
+          [(ngModel)]="filterList.is_visible"
+          (change)="filter()"
+        />
+        <label class="form-check-label px-2" for="exampleRadios2"> Pública </label>
+      </div>
+      <div class="form-check1">
+        <input
+          class="form-check1-input"
+          type="radio"
+          name="exampleRadios"
+          id="exampleRadios3"
+          value="false"
+          [(ngModel)]="filterList.is_visible"
+          (change)="filter()"
+        />
+        <label class="form-check-label px-2" for="exampleRadios3"> Privada </label>
+      </div>
+    </div>
+    <div  class="p-3">
+      <p>Status de Conclusão:</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="exampleRadios2"
+          id="exampleRadios4"
+          value="null"
+          checked
+          [(ngModel)]="filterList.status"
+          (change)="filter()"
+        />
+        <label class="form-check-label" for="exampleRadios4"> Todos </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="exampleRadios2"
+          id="exampleRadios5"
+          value="true"
+          [(ngModel)]="filterList.status"
+          (change)="filter()"
+        />
+        <label class="form-check-label" for="exampleRadios5"> Concluída </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="exampleRadios2"
+          id="exampleRadios6"
+          value="false"
+          [(ngModel)]="filterList.status"
+          (change)="filter()"
+        />
+        <label class="form-check-label" for="exampleRadios6"> Não concluída </label>
+      </div>
+    </div>
+  </div>
+
   <table class="table">
     <thead>
       <tr>
@@ -42,6 +135,8 @@
         <th>Status</th>
         <th>Ações</th>
       </tr>
+    </thead>
+
     <tbody>
       <tr *ngFor="let task of tasks">
         <td>{{ task.id }}</td>
@@ -49,18 +144,28 @@
         <td>{{ task.description }}</td>
         <td>
           <span *ngIf="task.status" class="badge badge-success">Concluída</span>
-          <span *ngIf="task.is_visible" class="badge badge-warning">Pública</span>
+          <span *ngIf="task.is_visible" class="badge badge-warning"
+            >Pública</span
+          >
         </td>
-        <td> 
+        <td>
           <button class="btn btn-danger" (click)="deleteTask(task)">
             <span class="glyphicon glyphicon-trash"></span>
             Excluir
           </button>
-          <button *ngIf="!task.status" class="btn btn-info px-2" (click)="showTask(task)">
+          <button
+            *ngIf="!task.status"
+            class="btn btn-info px-2"
+            (click)="showTask(task)"
+          >
             <span class="glyphicon glyphicon-trash"></span>
             Editar
           </button>
-          <button *ngIf="!task.status" class="btn btn-success px-2" (click)="setTrueTask(task)">
+          <button
+            *ngIf="!task.status"
+            class="btn btn-success px-2"
+            (click)="setTrueTask(task)"
+          >
             <span class="glyphicon glyphicon-trash"></span>
             Concluída
           </button>

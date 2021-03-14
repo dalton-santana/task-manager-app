@@ -32,8 +32,8 @@ export class GenericService {
     return localStorage.clear();
   }
 
-  getAll(res): Observable<any> {
-    return this.http.get<any>(this.baseUrlApi + res + '/', this.httpOptions);
+  getAll(res, params=''): Observable<any> {
+    return this.http.get<any>(this.baseUrlApi + res + '/' + params, this.httpOptions);
   }
 
   getItem(res, pk: number): Observable<any> {
