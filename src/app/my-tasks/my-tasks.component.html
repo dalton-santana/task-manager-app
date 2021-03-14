@@ -144,7 +144,8 @@
         <td>{{ task.description }}</td>
         <td>
           <span *ngIf="task.status" class="badge badge-success">Concluída</span>
-          <span *ngIf="task.is_visible" class="badge badge-warning"
+          <span *ngIf="!task.status" class="badge badge-warning">Pendente</span>
+          <span *ngIf="task.is_visible" class="badge badge-dark"
             >Pública</span
           >
         </td>
