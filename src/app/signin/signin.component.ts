@@ -12,26 +12,28 @@ export class SigninComponent implements OnInit {
     email: null,
     password: null,
   };
-  public errors: Array<any> = []
+  public errors: Array<any> = [];
 
-  constructor(private genericService: GenericService,  private router: Router) {}
+  constructor(private genericService: GenericService, private router: Router) {}
 
   signIn() {
-    this.errors = []
+    this.errors = [];
 
     let data: any = {
       session: {
         ...this.user,
-      }
+      },
     };
 
     this.genericService.signIn(data).subscribe(
       async (res) => {
-        localStorage.setItem('token', res.auth_token)
-        this.router.navigateByUrl("/")
+        localStorage.setItem('token', res.auth_token);
+        this.router.navigateByUrl('/home').then(() => {
+          location.reload();
+        });
       },
       (e) => {
-          this.errors.push(e.error.erros)
+        this.errors.push(e.error.erros);
       }
     );
   }

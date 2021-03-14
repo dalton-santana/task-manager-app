@@ -6,14 +6,15 @@ import { MyTasksComponent } from './my-tasks/my-tasks.component';
 import { SigninComponent } from './signin/signin.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
+  { path: 'home', component: HomeComponent,
+  canActivate: [AuthGuardService] },
   { path: 'login', component: SigninComponent },
   {
     path: 'my-tasks',
     component: MyTasksComponent,
     canActivate: [AuthGuardService],
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

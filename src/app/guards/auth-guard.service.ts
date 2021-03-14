@@ -12,11 +12,10 @@ export class AuthGuardService implements CanActivate {
   private isAuthenticated: boolean = false;
 
   canActivate() {
-
     if(this.genericService.getToken()){
       return true;
     }else{
-      this.router.navigateByUrl('login');
+      this.router.navigateByUrl('/login');
       return false;
     }
   }
