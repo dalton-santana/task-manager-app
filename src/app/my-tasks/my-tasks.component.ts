@@ -70,6 +70,7 @@ export class MyTasksComponent implements OnInit {
       status: false,
       is_visible: null,
     };
+    this.getAllTasks()
   }
 
   ngOnInit(): void {

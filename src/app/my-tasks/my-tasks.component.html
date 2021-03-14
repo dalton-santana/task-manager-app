@@ -23,7 +23,7 @@
           >
         </div>
 
-        <button type="submit" class="btn btn-success float-right" (click)="submitTask(task)">
+        <button type="submit" class="btn btn-success float-right" (click)="submitTask()">
         {{ currentTask.id ? 'Salvar': 'Adicionar' }} 
         </button>
         <button *ngIf="currentTask.id" class="btn btn-danger" (click)="cancelEdit()">
